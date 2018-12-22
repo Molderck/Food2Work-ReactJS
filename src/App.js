@@ -6,6 +6,24 @@ import RecipeDetails from "./components/RecipeDetails";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    recipes: [],
+    url:
+      "https://www.food2fork.com/api/search?key=774f661f3b11ca31e0b316a3a15018de"
+  };
+
+  async getRecipes() {
+    try {
+      const data = await fetch(this.state.url);
+      const jsonData = await data.json();
+      this.setState({
+        recipes: jsonData.recipes
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
