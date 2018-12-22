@@ -7,12 +7,12 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    recipes: [],
+    recipes: recipes,
     url:
       "https://www.food2fork.com/api/search?key=774f661f3b11ca31e0b316a3a15018de"
   };
 
-  async getRecipes() {
+  /* async getRecipes() {
     try {
       const data = await fetch(this.state.url);
       const jsonData = await data.json();
@@ -24,10 +24,16 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getRecipes();
+  }
+*/
+
   render() {
+    console.log(this.state.recipes);
     return (
       <React.Fragment>
-        <RecipeList />
+        <RecipeList recipes={this.state.recipes} />
         <RecipeDetails />
       </React.Fragment>
     );
