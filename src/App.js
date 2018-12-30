@@ -14,7 +14,7 @@ class App extends Component {
     pageIndex: 1
   };
 
-  async getRecipes() {
+  /*async getRecipes() {
     try {
       const data = await fetch(this.state.url);
       const jsonData = await data.json();
@@ -29,15 +29,39 @@ class App extends Component {
   componentDidMount() {
     this.getRecipes();
   }
+  */
 
   displayPage = index => {
     switch (index) {
       default:
       case 1:
-        return <RecipeList recipes={this.state.recipes} />;
+        return (
+          <RecipeList
+            recipes={this.state.recipes}
+            handleDetails={this.handleDetails}
+          />
+        );
       case 0:
-        return <RecipeDetails id={this.state.details_id} />;
+        return (
+          <RecipeDetails
+            id={this.state.details_id}
+            handleIndex={this.handleIndex}
+          />
+        );
     }
+  };
+
+  handleIndex = index => {
+    this.setState({
+      pageIndex: index
+    });
+  };
+
+  handleDetails = (index, id) => {
+    this.setState({
+      pageIndex: index,
+      details_id: id
+    });
   };
 
   render() {

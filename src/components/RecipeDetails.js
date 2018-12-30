@@ -5,13 +5,13 @@ export default class RecipeDetails extends Component {
     super(props);
     this.state = {
       recipe: recipe,
-      url: `https://www.food2fork.com/api/get?key=774f661f3b11ca31e0b316a3a15018de &rId=${
+      url: `https://www.food2fork.com/api/get?key=774f661f3b11ca31e0b316a3a15018de&rId=${
         this.props.id
       }`
     };
   }
 
-  async componentDidMount() {
+  /*async componentDidMount() {
     try {
       const data = await fetch(this.state.url);
       const jsonData = await data.json();
@@ -21,7 +21,7 @@ export default class RecipeDetails extends Component {
     } catch (error) {
       console.log(error);
     }
-  }
+  }*/
 
   render() {
     const {
@@ -32,6 +32,7 @@ export default class RecipeDetails extends Component {
       title,
       ingredients
     } = this.state.recipe;
+    const { handleIndex } = this.props;
     return (
       <React.Fragment>
         <div className="container">
@@ -40,6 +41,7 @@ export default class RecipeDetails extends Component {
               <button
                 type="button"
                 className="btn btn-warning mb-5 text-capitalize"
+                onClick={() => handleIndex(1)}
               >
                 Back to Recipe List
               </button>
