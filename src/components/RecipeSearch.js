@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 export default class RecipeSearch extends Component {
   render() {
+    const { value, handleChange, handleSubmit } = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -10,7 +11,7 @@ export default class RecipeSearch extends Component {
               Search recipes with{" "}
               <strong className="text-danger">Food2Work</strong>
             </h1>
-            <form className="mt-4">
+            <form className="mt-4" onSubmit={handleSubmit}>
               <label htmlFor="search" className="text-capitalize">
                 type recipes separated by comma
               </label>
@@ -20,6 +21,8 @@ export default class RecipeSearch extends Component {
                   name="search"
                   className="form-control"
                   placeholder="Chicken, onion, carrots"
+                  value={value}
+                  onChange={handleChange}
                 />
                 <div className="input-group-append">
                   <button
