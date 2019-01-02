@@ -10,12 +10,15 @@ class App extends Component {
     recipes: recipes,
     url:
       "https://www.food2fork.com/api/search?key=774f661f3b11ca31e0b316a3a15018de",
+    base_url:
+      "https://www.food2fork.com/api/search?key=774f661f3b11ca31e0b316a3a15018de",
     details_id: 35382,
     pageIndex: 1,
-    search: ""
+    search: "",
+    query: "&q="
   };
 
-  /*async getRecipes() {
+  async getRecipes() {
     try {
       const data = await fetch(this.state.url);
       const jsonData = await data.json();
@@ -30,7 +33,6 @@ class App extends Component {
   componentDidMount() {
     this.getRecipes();
   }
-  */
 
   displayPage = index => {
     switch (index) {
@@ -69,13 +71,22 @@ class App extends Component {
   };
 
   handleChange = event => {
-    console.log("Hello from handleChange");
+    this.setState({
+      search: event.target.value
+    });
   };
 
   handleSubmit = event => {
-    console.log("Hello from HandleSubmit");
-
     event.preventDefault();
+    const { base_url, query, search } = this.state;
+    this.setState(
+      () => {
+        return { url: `${base_url}${query}${search}`, search: "" };
+      },
+      () => {
+        this.getRecipes();
+      }
+    );
   };
 
   render() {
