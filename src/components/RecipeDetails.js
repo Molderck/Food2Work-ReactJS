@@ -11,7 +11,7 @@ export default class RecipeDetails extends Component {
     };
   }
 
-  /*async componentDidMount() {
+  async componentDidMount() {
     try {
       const data = await fetch(this.state.url);
       const jsonData = await data.json();
@@ -21,7 +21,7 @@ export default class RecipeDetails extends Component {
     } catch (error) {
       console.log(error);
     }
-  }*/
+  }
 
   render() {
     const {
